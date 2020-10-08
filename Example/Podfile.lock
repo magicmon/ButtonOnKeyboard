@@ -1,0 +1,16 @@
+PODS:
+  - ButtonOnKeyboard (0.1.0)
+
+DEPENDENCIES:
+  - ButtonOnKeyboard (from `../`)
+
+EXTERNAL SOURCES:
+  ButtonOnKeyboard:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ButtonOnKeyboard: 159b4963746d52ebdbfead8e3a5b8e0a52bad221
+
+PODFILE CHECKSUM: 60d44dd0c0a251f53f3d8f584894ab39a36a2856
+
+COCOAPODS: 1.9.3

@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ButtonOnKeyboard_Example' do
+  pod 'ButtonOnKeyboard', :path => '../'
+
+  target 'ButtonOnKeyboard_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
