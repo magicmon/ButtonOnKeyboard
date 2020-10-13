@@ -18,16 +18,16 @@ button.bk_defaultButtonHeight = 50  // example size.
 ```
 
 Whenever the keyboard state changes, it calls button.bk_onKeyboard().
-```swift
-button.bk_onKeyboard(keyboardHeight: height)
-```
-
 If UITextField is not visible by UIButton, add the scrollView parameter to "bk_onKeyboard()".
 ```swift
+button.bk_onKeyboard(keyboardHeight: height)
+or
 button.bk_onKeyboard(scrollView: scrollView, keyboardHeight: height)
 ```
-![Demo](https://raw.githubusercontent.com/magicmon/ButtonOnKeyboard/main/Screenshots/iphone_demo.gif)
-![Demo2](https://raw.githubusercontent.com/magicmon/ButtonOnKeyboard/master/Screenshots/iphone_x_demo.gif)
+
+### Demo
+![Demo](https://github.com/magicmon/ButtonOnKeyboard/blob/main/Screenshots/iphone_demo.gif)
+![Demo](https://github.com/magicmon/ButtonOnKeyboard/blob/main/Screenshots/iphone_x_demo.gif)
 
 ### Example
 ```swift
