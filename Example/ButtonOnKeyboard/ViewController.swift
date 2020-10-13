@@ -10,6 +10,7 @@ import UIKit
 import ButtonOnKeyboard
 
 class ViewController: UIViewController {
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var button: UIButton!
     @IBOutlet private weak var buttonHeightConstraint: NSLayoutConstraint!
 
@@ -45,11 +46,15 @@ class ViewController: UIViewController {
             }
         }
         
-        button.bk_onKeyboard(keyboardHeight: visibleHeight)
+        updateButtonLayout(height: visibleHeight)
     }
      
     @objc func keyboardWillHide(_ notification: Notification) {
-        button.bk_onKeyboard(keyboardHeight: 0)
+        updateButtonLayout(height: 0)
+    }
+    
+    func updateButtonLayout(height: CGFloat) {
+        button.bk_onKeyboard(scrollView: scrollView, keyboardHeight: height)
     }
 }
 
