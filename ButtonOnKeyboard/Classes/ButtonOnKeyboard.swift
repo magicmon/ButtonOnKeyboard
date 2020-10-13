@@ -6,30 +6,38 @@
 //
 
 import UIKit
-extension UIApplication {
-    var keyWindowInConnectedScenes: UIWindow? {
-        return windows.first(where: { $0.isKeyWindow })
-    }
-}
 
 @available(iOS 11.0, *)
 extension UIButton {
-    public func buttonOnKeyboard(scrollView: UIScrollView? = nil,
-                                 defaultButtonHeight: CGFloat = 0,
-                                 keyboardHeight: CGFloat = 0) {
+    static var buttonOnKeyboardDefaultHeight: CGFloat = 0.0
+    public var bk_defaultButtonHeight: CGFloat {
+        get { return UIButton.buttonOnKeyboardDefaultHeight }
+        set {
+            UIButton.buttonOnKeyboardDefaultHeight = newValue
+            bk_onKeyboard()
+        }
+    }
+    
+    public func bk_onKeyboard(scrollView: UIScrollView? = nil, keyboardHeight: CGFloat = 0) {
         guard let bottomConstraint = self.findConstraint(layoutAttribute: .bottom),
             let heightConstraint = findHeightConstraint() else { return }
         
         var safeAreaBottom: CGFloat {
-            if let window = UIApplication.shared.keyWindow {
-                return window.safeAreaInsets.bottom
+            if let window = UIApplication.shared.windows.first {
+                return window.frame.height - window.safeAreaLayoutGuide.layoutFrame.height - window.safeAreaLayoutGuide.layoutFrame.minY
             }
             
             return 0.0
         }
-        let isOnTheSuperView = self.superview?.isEqual(bottomConstraint.firstItem) == true
         
-        let currentButtonHeight = defaultButtonHeight > 0 ? defaultButtonHeight : self.frame.height
+        var isOnTheSuperView: Bool = self.superview?.isEqual(bottomConstraint.firstItem) == true
+        var currentButtonHeight: CGFloat = self.frame.height
+        if UIButton.buttonOnKeyboardDefaultHeight > 0 {
+            currentButtonHeight = UIButton.buttonOnKeyboardDefaultHeight
+        } else {
+            currentButtonHeight = self.frame.height
+            isOnTheSuperView = false
+        }
         
         UIView.animate(withDuration: 0.23, animations: { [weak self] in
             guard let `self` = self else { return }

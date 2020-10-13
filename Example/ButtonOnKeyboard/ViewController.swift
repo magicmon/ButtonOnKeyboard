@@ -11,10 +11,10 @@ import ButtonOnKeyboard
 
 class ViewController: UIViewController {
     @IBOutlet private weak var button: UIButton!
+    @IBOutlet private weak var buttonHeightConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -22,12 +22,8 @@ class ViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        button.buttonOnKeyboard(defaultButtonHeight: 50)
+        button.bk_defaultButtonHeight = buttonHeightConstraint.constant  // Stores the default size of the button.
     }
     
     @objc func hideKeyboard() {
@@ -39,32 +35,21 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-     @objc
-     func keyboardWillShow(_ notification: Notification) {
-         if self.view.window == nil {
-             return
-         }
+    @objc func keyboardWillShow(_ notification: Notification) {
+        var visibleHeight: CGFloat = 0
          
-         var visibleHeight: CGFloat = 0
-         
-         if let userInfo = notification.userInfo {
-             if let windowFrame = UIApplication.shared.keyWindow?.frame, let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                 visibleHeight = windowFrame.intersection(keyboardRect).height
-             }
-         }
-         
-         let keyboardHeight = visibleHeight
+        if let userInfo = notification.userInfo {
+            if let windowFrame = UIApplication.shared.keyWindow?.frame,
+                let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                visibleHeight = windowFrame.intersection(keyboardRect).height
+            }
+        }
         
-        
-        button.buttonOnKeyboard(defaultButtonHeight: 50, keyboardHeight: keyboardHeight)
-     }
+        button.bk_onKeyboard(keyboardHeight: visibleHeight)
+    }
      
-     @objc
-     func keyboardWillHide(_ notification: Notification) {
-         if self.view.window == nil {
-             return
-         }
-        button.buttonOnKeyboard(defaultButtonHeight: 50, keyboardHeight: 0)
-     }
+    @objc func keyboardWillHide(_ notification: Notification) {
+        button.bk_onKeyboard(keyboardHeight: 0)
+    }
 }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -16,19 +16,21 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63n-5A-wXg">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="846" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ReM-KV-QN2"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dau-e4-nmw">
-                                <rect key="frame" x="36" y="316.5" width="303" height="34"/>
+                                <rect key="frame" x="40" y="431" width="334" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -36,7 +38,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="63n-5A-wXg" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="4vO-eC-PBa"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="63n-5A-wXg" secondAttribute="bottom" id="gth-L7-oyC"/>
+                            <constraint firstAttribute="bottom" secondItem="63n-5A-wXg" secondAttribute="bottom" id="DqG-od-dUi"/>
                             <constraint firstItem="dau-e4-nmw" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="gwf-1u-uDY"/>
                             <constraint firstItem="dau-e4-nmw" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="lSb-vP-uF0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dau-e4-nmw" secondAttribute="trailing" constant="20" id="omB-Cp-T8W"/>
@@ -46,6 +48,7 @@
                     </view>
                     <connections>
                         <outlet property="button" destination="63n-5A-wXg" id="5RF-8G-GFW"/>
+                        <outlet property="buttonHeightConstraint" destination="ReM-KV-QN2" id="aPu-d9-UeE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
